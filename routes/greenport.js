@@ -228,7 +228,7 @@ router.post("/post-rating", async function (req, res, next) {
   }
   let sql = `INSERT INTO IPC_GREENPORT VALUES (gp_id.nextval,${req.body.uk_id},${req.body.timestamp},'${data.kp}',
   '${data.pg}','${data.pl}','${data.mk}','${data.ku}','${data.kl}','${data.at}','${data.dp}',
-  '${data.dk}','${data.em}','${data.ai}','${data.hs}','${data.ml}','${data.lb}','${data.sb}','${data.periode}')`;
+  '${data.dk}','${data.em}','${data.ai}','${data.hs}','${data.ml}','${data.lb}','${data.sb}','${req.body.periode}')`;
   const dataGp = await conn.exe(sql, [], { autoCommit: true });
   if (!dataGp) return res.status(400).send("Data Error");
   res.send(dataGp);
@@ -261,10 +261,12 @@ router.put("/put-rating/:gp_id", async function (req, res, next) {
       data[keyNames[i]] += req.body[keyNames[i]][a] + "&%";
     }
   }
+
   let sql = `UPDATE IPC_GREENPORT SET CREATEDAT=${req.body.timestamp},KP='${data.kp}',
   PG='${data.pg}',PL='${data.pl}',MK='${data.mk}',KU='${data.ku}',KL='${data.kl}',AT='${data.at}',DP='${data.dp}',
-  DK='${data.dk}',EM='${data.em}',AI='${data.ai}',HS='${data.hs}',ML='${data.ml}',LB='${data.lb}',SB='${data.sb}',GP_PERIODE='${data.periode}'
+  DK='${data.dk}',EM='${data.em}',AI='${data.ai}',HS='${data.hs}',ML='${data.ml}',LB='${data.lb}',SB='${data.sb}',GP_PERIODE='${req.body.periode}'
   WHERE GP_ID='${req.params.gp_id}'`;
+
   const dataGp = await conn.exe(sql, [], { autoCommit: true });
   if (!dataGp) return res.status(400).send("Data Error");
   res.send(dataGp);

@@ -302,6 +302,11 @@ router.get("/rkl/:uk_id", async function (req, res, next) {
   req.params.uk_id == "9999"
     ? (sql = `SELECT * FROM (SELECT * FROM IPC_UNITKERJA JOIN IPC_IZINLINGKUNGAN USING (unitkerja_id)) JOIN IPC_MATRIKSRKL USING (il_id)`)
     : (sql = sql);
+  if (req.query.ilid && req.params.uk_id === "9999") {
+    sql = `SELECT * FROM (SELECT * FROM IPC_UNITKERJA JOIN IPC_IZINLINGKUNGAN USING (unitkerja_id)) JOIN IPC_MATRIKSRKL USING (il_id) WHERE IL_ID='${req.query.ilid}'`;
+  } else if (req.query.ilid && req.params.uk_id !== "9999") {
+    sql = `SELECT * FROM (SELECT * FROM IPC_UNITKERJA JOIN IPC_IZINLINGKUNGAN USING (unitkerja_id)) JOIN IPC_MATRIKSRKL USING (il_id) WHERE UNITKERJA_ID='${req.params.uk_id}' AND IL_ID='${req.query.ilid}'`;
+  }
   const dataRKL = await conn.exe(sql, [], { outFormat: oracledb.OBJECT });
   if (!dataRKL) return res.status(400).send("Data Error");
   res.send(dataRKL.rows);
@@ -400,6 +405,11 @@ router.get("/rpl/:uk_id", async function (req, res, next) {
   req.params.uk_id == "9999"
     ? (sql = `SELECT * FROM (SELECT * FROM IPC_UNITKERJA JOIN IPC_IZINLINGKUNGAN USING (unitkerja_id)) JOIN IPC_MATRIKSRPL USING (il_id)`)
     : (sql = sql);
+  if (req.query.ilid && req.params.uk_id === "9999") {
+    sql = `SELECT * FROM (SELECT * FROM IPC_UNITKERJA JOIN IPC_IZINLINGKUNGAN USING (unitkerja_id)) JOIN IPC_MATRIKSRPL USING (il_id) WHERE IL_ID='${req.query.ilid}'`;
+  } else if (req.query.ilid && req.params.uk_id !== "9999") {
+    sql = `SELECT * FROM (SELECT * FROM IPC_UNITKERJA JOIN IPC_IZINLINGKUNGAN USING (unitkerja_id)) JOIN IPC_MATRIKSRPL USING (il_id) WHERE UNITKERJA_ID='${req.params.uk_id}' AND IL_ID='${req.query.ilid}'`;
+  }
   const dataRPL = await conn.exe(sql, [], { outFormat: oracledb.OBJECT });
   if (!dataRPL) return res.status(400).send("Data Error");
   res.send(dataRPL.rows);
