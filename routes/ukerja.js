@@ -1,10 +1,10 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 const conn = require("../services/database");
-var oracledb = require("oracledb");
-var bcrypt = require("bcryptjs");
-var moment = require("moment");
-var jwt = require("jsonwebtoken");
+const oracledb = require("oracledb");
+const bcrypt = require("bcryptjs");
+const moment = require("moment");
+const jwt = require("jsonwebtoken");
 /* GET users listing. */
 router.get("/:uk_id", async function (req, res, next) {
   let sql = `SELECT * FROM IPC_UNITKERJA WHERE UNITKERJA_ID='${req.params.uk_id}'`;

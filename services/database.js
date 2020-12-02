@@ -1,5 +1,5 @@
 let connection;
-var oracledb = require("oracledb");
+const oracledb = require("oracledb");
 
 (async () => {
   try {

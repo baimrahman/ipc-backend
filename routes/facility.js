@@ -1,7 +1,7 @@
-var express = require("express");
-var router = express.Router();
-var conn = require("../services/database");
-var oracledb = require("oracledb");
+const express = require("express");
+const router = express.Router();
+const conn = require("../services/database");
+const oracledb = require("oracledb");
 
 /* GET users listing. */
 router.get("/overview/:uk_id", async function (req, res, next) {

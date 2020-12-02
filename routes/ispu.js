@@ -1,8 +1,8 @@
-var express = require("express");
-var router = express.Router();
-var conn = require("../services/database");
-var oracledb = require("oracledb");
-var moment = require("moment");
+const express = require("express");
+const router = express.Router();
+const conn = require("../services/database");
+const oracledb = require("oracledb");
+const moment = require("moment");
 /* GET users listing. */
 router.get("/map", async function (req, res, next) {
   let sql = `SELECT * FROM IPC_LISTSENSOR`;

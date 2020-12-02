@@ -1,11 +1,11 @@
-var express = require("express");
-var router = express.Router();
-var conn = require("../services/database");
-var oracledb = require("oracledb");
-var multer = require("multer");
-var moment = require("moment");
+const express = require("express");
+const router = express.Router();
+const conn = require("../services/database");
+const oracledb = require("oracledb");
+const multer = require("multer");
+const moment = require("moment");
 
-var storage = multer.diskStorage({
+const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "./public/storage/");
   },
@@ -13,7 +13,7 @@ var storage = multer.diskStorage({
     cb(null, new Date().toISOString() + file.originalname);
   },
 });
-var upload = multer({ storage });
+const upload = multer({ storage });
 
 router.get("/dash-rkl/:time", async (req, res) => {
   const uklist = await conn.exe("SELECT * FROM IPC_UNITKERJA", [], {
